@@ -48,7 +48,7 @@ const Header = async () => {
             </a>
           </SignedIn>
           <SignedOut>
-            <SignInButton forceRedirectUrl="/dashboard">
+            <SignInButton forceRedirectUrl={process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL}>
               <Button variant="outline">Login</Button>
             </SignInButton>
           </SignedOut>
