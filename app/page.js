@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { SignedOut } from "@clerk/nextjs";
 import {
   featuresData,
   howItWorksData,
@@ -115,12 +116,14 @@ const LandingPage = () => {
             smarter with Welth
           </p>
           <Link href="/dashboard">
+            <SignedOut>
             <Button
               size="lg"
-              className="bg-white text-blue-600 hover:bg-blue-50 animate-bounce"
+              className="bg-white text-blue-500 hover:bg-blue-50 hover:text-white"
             >
-              Start Free Trial
+              Get Started
             </Button>
+            </SignedOut>
           </Link>
         </div>
       </section>

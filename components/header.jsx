@@ -11,7 +11,16 @@ const Header = async () => {
   return (
     <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-  
+        <div className="flex items-center space-x-4">
+          <SignedIn>
+            <Link href="/" className="text-left text-gray-600 hover:text-blue-600">
+              <Button variant="outline">
+                <LayoutDashboard size={18} />
+                <span className="hidden md:inline">Home</span>
+              </Button>
+            </Link>
+          </SignedIn>
+        </div>
 
         {/* Navigation Links - Different for signed in/out users */}
         <div className="hidden md:flex items-center space-x-8">

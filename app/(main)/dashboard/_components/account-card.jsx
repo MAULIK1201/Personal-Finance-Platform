@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { updateDefaultAccount } from "@/actions/account";
+import { updateDefaultAccount, deleteAccount } from "@/actions/account";
 import { toast } from "sonner";
 
 export function AccountCard({ account }) {
@@ -26,6 +26,13 @@ export function AccountCard({ account }) {
     error,
   } = useFetch(updateDefaultAccount);
 
+  const {
+    loading: deleteLoading,
+    fn: deleteAccountFn,
+    data: deleteResult,
+    error: deleteError,
+  } = useFetch(deleteAccount);
+
   const handleDefaultChange = async (event) => {
     event.preventDefault(); // Prevent navigation
 
@@ -35,6 +42,18 @@ export function AccountCard({ account }) {
     }
 
     await updateDefaultFn(id);
+  };
+
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    if (isDefault) {
+      toast.error("Cannot delete the default account.");
+      return;
+    }
+    if (!window.confirm("Are you sure you want to delete this account? This action cannot be undone.")) {
+      return;
+    }
+    await deleteAccountFn(id);
   };
 
   useEffect(() => {
@@ -49,18 +68,43 @@ export function AccountCard({ account }) {
     }
   }, [error]);
 
+  useEffect(() => {
+    if (deleteResult?.success) {
+      toast.success("Account deleted successfully");
+    } else if (deleteResult?.error) {
+      toast.error(deleteResult.error);
+    }
+  }, [deleteResult]);
+
+  useEffect(() => {
+    if (deleteError) {
+      toast.error(deleteError.message || "Failed to delete account");
+    }
+  }, [deleteError]);
+
   return (
     <Card className="hover:shadow-md transition-shadow group relative">
-      <Link href={`/account/${id}`}>
+      <Link href={`/account/${id}`} className="block">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium capitalize">
             {name}
           </CardTitle>
+          <div className="flex items-center gap-2">
           <Switch
             checked={isDefault}
             onClick={handleDefaultChange}
             disabled={updateDefaultLoading}
           />
+            <button
+            
+              className="bg-white text-white rounded px-2 py-1 text-xs hover:cursor-pointer transition"
+              onClick={e => { e.preventDefault(); handleDelete(e); }}
+              disabled={deleteLoading}
+              title="Delete Account"
+            >
+              <img src="../delete.png" alt="Delete Account"  style={{ width: "20px", height: "20px" }} />
+            </button>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">

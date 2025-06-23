@@ -56,6 +56,7 @@ export function CreateAccountDrawer({ children }) {
 
   const onSubmit = async (data) => {
     console.log("Form data:", data);
+    createAccountFn(data);
   };
 
   useEffect(() => {
