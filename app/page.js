@@ -119,7 +119,7 @@ const LandingPage = () => {
             <SignedOut>
             <Button
               size="lg"
-              className="bg-white text-blue-500 hover:bg-blue-50 hover:text-white"
+              className="bg-white text-blue-500 hover:bg-blue-50 "
             >
               Get Started
             </Button>

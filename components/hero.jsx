@@ -1,31 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";
 
 const HeroSection = () => {
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const imageElement = imageRef.current;
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const scrollThreshold = 100;
-
-      if (scrollPosition > scrollThreshold) {
-        imageElement.classList.add("scrolled");
-      } else {
-        imageElement.classList.remove("scrolled");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  
 
   return (
     <section className="pt-40 pb-20 px-4">
@@ -46,8 +28,8 @@ const HeroSection = () => {
           </Link>
           </SignedOut>
         </div>
-        <div className="hero-image-wrapper mt-5 md:mt-0">
-          <div ref={imageRef} className="hero-image">
+        <div className="hero-image-wrapper mt-5 md:mt-5">
+          <div  className="hero-image">
             <Image
               src="/hero2.jpg"
               width={1280}
