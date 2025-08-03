@@ -91,14 +91,14 @@ export const testimonialsData = [
     role: "Small Business Owner",
     image: "/man.png",
     quote:
-      "Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
+      "This plateform has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
   },
   {
     name: "Disha Gupta",
     role: "Financial Advisor",
     image: "/women.png",
     quote:
-      "I recommend Welth to all my clients. The multi-currency support and detailed analytics make it perfect for international investors.",
+      "I recommend this AI personal finance platform to all my clients. The recurring transaction feature has allowed me to track my monthly salary without manually entering it.",
   },
   {
     name: "Kaushal Varchandani",
